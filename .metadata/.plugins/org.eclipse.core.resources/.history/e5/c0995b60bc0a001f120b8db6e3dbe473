@@ -1,0 +1,18 @@
+#ifndef _GPIO_HPP_
+#define _GPIO_HPP_
+#include "stm32f4xx.h"
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+#include "main.h"
+
+ void gpio_init(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+#endif

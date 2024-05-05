@@ -1,0 +1,7 @@
+#include "gpio.hpp"
+
+void gpio_init(void){
+	// Enable GPIO clock for Port D
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+	GPIOD->MODER |= 1UL << 12;
+}

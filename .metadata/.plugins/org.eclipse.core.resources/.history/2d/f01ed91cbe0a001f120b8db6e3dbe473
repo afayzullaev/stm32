@@ -1,0 +1,9 @@
+#include "app_main.hpp"
+#include "gpio.hpp"
+
+
+void app_main(void)
+{
+	gpio_init();
+
+}

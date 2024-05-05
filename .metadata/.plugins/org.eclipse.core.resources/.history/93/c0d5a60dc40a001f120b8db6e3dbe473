@@ -1,0 +1,36 @@
+#ifndef _GPIO_HPP_
+#define _GPIO_HPP_
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+#include "main.h"
+
+
+class Gpio
+{
+private:
+	uint16_t pin;
+	GPIO_TypeDef* port;
+	uint8_t state;
+public:
+	Gpio(uint16_t pin, GPIO_TypeDef* port);
+	void gpio_init(void);
+	void gpio_write(uint16_t pin, GPIO_TypeDef* port, uint8_t state);
+};
+
+
+
+
+
+
+
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+#endif

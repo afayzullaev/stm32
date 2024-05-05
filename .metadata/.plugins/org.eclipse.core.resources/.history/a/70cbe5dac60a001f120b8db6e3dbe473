@@ -1,0 +1,17 @@
+#include "app_main.hpp"
+#include "gpio.hpp"
+
+
+void app_main(void)
+{
+	Gpio greenLed(12, GPIOD);
+	greenLed.Init();
+	while(true)
+	{
+		greenLed.gpio_write(1);
+		HAL_Delay(1000);
+		greenLed.gpio_write(0);
+		HAL_Delay(1000);
+	}
+
+}
