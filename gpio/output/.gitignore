@@ -1,7 +1,9 @@
 # Ignore compiled files
 *.o
 *.out
-
+*.project
+*.mxproject
+*.ioc
 # Ignore log files
 *.log
 
