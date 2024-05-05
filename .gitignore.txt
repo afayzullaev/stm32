@@ -6,4 +6,5 @@
 *.log
 
 # Ignore build directories
-Debug/
+build/
+bin/
