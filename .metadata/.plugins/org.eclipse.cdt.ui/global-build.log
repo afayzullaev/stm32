@@ -1,18 +1,4 @@
-15:33:11 **** Incremental Build of configuration Debug for project output ****
-make -j16 all 
-arm-none-eabi-g++ "../Program/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"F:/Projects/stm32/stm32/basic_peripherals/gpio/output/Program" -I"F:/Projects/stm32/stm32/basic_peripherals/gpio/output/Libs/Peripherals/Inc" -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Program/app_main.d" -MT"Program/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Program/app_main.o"
-arm-none-eabi-g++ -o "output.elf" @"objects.list"   -mcpu=cortex-m4 -T"F:\Projects\stm32\stm32\basic_peripherals\gpio\output\STM32F407VGTX_FLASH.ld" -Wl,-Map="output.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: output.elf
- 
-arm-none-eabi-size  output.elf 
-arm-none-eabi-objdump -h -S output.elf  > "output.list"
-   text	   data	    bss	    dec	    hex	filename
-   5592	     20	   1572	   7184	   1c10	output.elf
-Finished building: default.size.stdout
- 
-Finished building: output.list
- 
-15:33:14 **** Incremental Build of configuration Debug for project output ****
+15:39:26 **** Incremental Build of configuration Debug for project output ****
 make -j16 all 
 arm-none-eabi-size  output.elf 
    text	   data	    bss	    dec	    hex	filename
