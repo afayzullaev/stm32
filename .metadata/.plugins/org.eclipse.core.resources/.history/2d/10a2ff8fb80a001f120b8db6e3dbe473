@@ -1,0 +1,14 @@
+#ifndef _APP_MAIN_HPP_
+#define _APP_MAIN_HPP_
+
+#ifdef __cplusplus
+#define EXTERNC extern "C"
+#else
+#define EXTERNC
+#endif
+
+EXTERNC void app_main(void);
+
+
+
+#endif
