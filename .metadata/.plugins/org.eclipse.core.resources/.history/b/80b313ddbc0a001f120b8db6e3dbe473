@@ -1,5 +1,0 @@
-#include "gpio.hpp"
-
-void gpio_init(void){
-
-}
