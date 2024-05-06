@@ -1,0 +1,76 @@
+#ifndef _GPIO_HPP_
+#define _GPIO_HPP_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "main.h"
+
+#define PIN_0			0
+#define PIN_1			1
+#define PIN_2			2
+#define PIN_3			3
+#define PIN_4			4
+#define PIN_5			5
+#define PIN_6			6
+#define PIN_7			7
+#define PIN_8			8
+#define PIN_9			9
+#define PIN_10			10
+#define PIN_11			11
+#define PIN_12			12
+#define PIN_13			13
+#define PIN_14			14
+#define PIN_15			15
+
+
+enum PIN_STATE{
+	LOW = 0,
+	HIGH
+};
+
+enum PIN_MODE{
+	INPUT = 0,
+	OUTPUT,
+	AF,
+	ANALOG
+};
+
+enum PIN_PUPDR{
+	NO_PULL_UP_DOWN = 0,
+	PULL_UP,
+	PULL_DOWN,
+};
+
+enum EDGE{
+	FALLING = 0,
+	RISING,
+	ANY_EDGE,
+};
+
+class Gpio
+{
+private:
+	const uint16_t mpin;
+	const GPIO_TypeDef* mport;
+	const PIN_MODE mmode;
+	const PIN_PUPDR mpupdr;
+	void Enable_Clock(void);
+public:
+	Gpio(uint16_t pin, GPIO_TypeDef* port, PIN_MODE mode);
+	Gpio(uint16_t pin, GPIO_TypeDef* port, PIN_MODE mode, PIN_PUPDR pupdr);
+	void Write(PIN_STATE state);
+	void AttachInterupt(void);
+	PIN_STATE Read(void);
+};
+
+
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+#endif
