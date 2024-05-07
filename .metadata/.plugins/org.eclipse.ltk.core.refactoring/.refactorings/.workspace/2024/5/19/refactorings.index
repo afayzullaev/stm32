@@ -2,3 +2,5 @@
 1714929894772	Delete resource 'input'
 1715068731925	Delete resource 'test'
 1715076195053	Delete resource 'timer/Libs/Peripherals/Src'
+1715086609883	Delete resource 'timer'
+1715086628791	Rename resource 'timer_OC'

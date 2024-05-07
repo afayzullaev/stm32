@@ -1,0 +1,14 @@
+# Ignore compiled files
+*.o
+*.out
+*.project
+*.mxproject
+*.ioc
+*.launch
+*.cproject
+# Ignore log files
+*.log
+
+# Ignore directories
+Debug/
+Drivers/
