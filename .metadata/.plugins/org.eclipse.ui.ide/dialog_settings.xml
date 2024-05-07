@@ -9,6 +9,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="F:\Projects\stm32\adc\adc_regular_16_channel"/>
 			<item value="F:\Projects\stm32\stm32\basic_peripherals\gpio\input"/>
 		</list>
 	</section>

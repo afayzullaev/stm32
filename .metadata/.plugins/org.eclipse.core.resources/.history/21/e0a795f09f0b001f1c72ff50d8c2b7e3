@@ -1,0 +1,40 @@
+#ifndef _GPIO_HPP_
+#define _GPIO_HPP_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "main.h"
+
+/**
+ * basic: TIM6/7, general:TIM2/3/4/5, advanced:TIM1/8
+ */
+class TimerBasic {
+private:
+	TIM_TypeDef* mtimer;
+	uint32_t mPrescaler;
+	uint32_t mCounterMode;
+	uint16_t mCounter;
+	uint32_t mClockDivision;
+	uint32_t mRepetitionCounter;
+public:
+    TimerBasic(TIM_TypeDef* timer);
+    TimerBasic(TIM_TypeDef* timer, uint32_t Prescaler, uint32_t Period, uint32_t ClockDivision, uint32_t CounterMode,uint32_t RepetitionCounter);
+
+    void set_prescaler(uint32_t prescaler);
+    void start();
+    void stop();
+private:
+    void Enable_Clock(void);
+};
+
+
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+#endif

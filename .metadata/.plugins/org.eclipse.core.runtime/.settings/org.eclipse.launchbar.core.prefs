@@ -1,9 +1,13 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:input Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:input_interrupt Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:output Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:input Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:input_interrupt Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:output Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:timer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:timer_OC Debug
 eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:adc_regular_16_channel\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:basic_timer\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:basic_timer\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:input\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:input\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:output\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:output\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:timer_OC\ Debug/activeLaunchMode=run

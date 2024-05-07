@@ -1,0 +1,59 @@
+#include "app_main.hpp"
+#include "gpio.hpp"
+#include "timer.hpp"
+#include "stm32f4xx_hal.h"
+
+volatile uint8_t flag = 0;
+
+Gpio redLed(PIN_13, GPIOD, OUTPUT);
+
+void TIM6_DAC_IRQHandler(void) {
+    // Timer interrupt handler code here
+    // This function will be called when TIM6 interrupt occurs
+    // Clear the interrupt flag
+	redLed.Write(HIGH);
+	HAL_Delay(1000);
+	if (TIM6->SR & (0x1UL << TIM_SR_UIF_Pos)) {
+		// Clear the update interrupt flag
+		TIM6->SR &= ~(0x1UL << TIM_SR_UIF_Pos);
+		redLed.Write(HIGH);
+		HAL_Delay(1000);
+		flag = 1;
+	}
+
+}
+
+
+
+void app_main(void)
+{
+	Gpio greenLed(PIN_12, GPIOD, OUTPUT);
+//	Gpio redLed(PIN_13, GPIOD, OUTPUT);
+	Gpio blueLed(PIN_14, GPIOD, OUTPUT);
+	Gpio yellowLed(PIN_15, GPIOD, OUTPUT);
+
+	TimerBasic basic_timer(TIM1,10000-1, 8400-1);
+	basic_timer.start();
+	while(1);
+	while(true)
+	{
+		if(flag == 1)
+		{
+			greenLed.Write(HIGH);
+			redLed.Write(HIGH);
+			blueLed.Write(HIGH);
+			yellowLed.Write(HIGH);
+			flag = 0;
+			HAL_Delay(1000);
+		}else{
+			greenLed.Write(LOW);
+			redLed.Write(LOW);
+			blueLed.Write(LOW);
+			yellowLed.Write(LOW);
+			HAL_Delay(1000);
+		}
+		HAL_Delay(1000);
+	}
+
+
+}

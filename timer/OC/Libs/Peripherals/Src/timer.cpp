@@ -1,26 +1,72 @@
 #include "timer.hpp"
 
-Timer::Timer(TIM_TypeDef* timer) : m_timer(timer) {}
+TimerBasic::TimerBasic(TIM_TypeDef* timer, uint16_t PSC, uint16_t ARR)
+: mtimer(timer),
+  mPsc(PSC),
+  mArr(ARR)
+{
+	Enable_Clock();
 
-void Timer::configure(uint32_t prescaler, uint32_t period) {
-    // Enable Timer clock
-    if (m_timer == TIM2) {
-        RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
-    } else if (m_timer == TIM3) {
-        RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
-    } // Add more cases for other timers as needed
+	mtimer->CR1 &= ~(0x1UL << TIM_CR1_OPM_Pos);//disable one pulse
 
-    // Timer configuration
-    m_timer->PSC = prescaler - 1; // Prescaler
-    m_timer->ARR = period - 1; // Auto-reload register
+	mtimer->CR1 &= ~(0x1UL << TIM_CR1_URS_Pos);//Only counter overflow generates event
+	mtimer->CR1 &= ~(0x1UL << TIM_CR1_UDIS_Pos);//Update Event enabled
+
+	mtimer->CR2 &= ~(7UL << TIM_CR2_MMS_Pos);//Master mode --> Reset
+	mtimer->CR1 |= 0x1UL << TIM_CR1_ARPE_Pos; // buffered
+	mtimer->PSC = mPsc;
+	mtimer->ARR = mArr;
+
+	mtimer->SR = 0;//Clear Update Event Interrupt
+
+	mtimer->DIER |= 0x1UL << TIM_DIER_UIE_Pos;//Enable Update interrupt
+
+	mtimer->EGR |= (0x1UL<<TIM_EGR_UG_Pos);//UG: Update generation. Re-initializes the counter and updates registers
+	if (mtimer == TIM6) {
+		NVIC_EnableIRQ(TIM6_DAC_IRQn);
+		NVIC_SetPriority(TIM6_DAC_IRQn, 5);
+	} else if (mtimer == TIM7) {
+		NVIC_EnableIRQ(TIM7_IRQn);
+		NVIC_SetPriority(TIM7_IRQn, 5);
+	}
+
+
 }
 
-void Timer::start() {
+void TimerBasic::Enable_Clock(void)
+{
+	// Enable Timer clock
+	if (mtimer == TIM6) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
+	} else if (mtimer == TIM7) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM7EN;
+	}
+}
+void TimerBasic::set_prescaler(uint16_t prescaler) {
     // Start the timer
-    m_timer->CR1 |= TIM_CR1_CEN;
+	mPsc = prescaler;
+	mtimer->ARR = mArr;
 }
 
-void Timer::stop() {
+void TimerBasic::set_arr(uint16_t arr) {
+    // Start the timer
+	mArr = arr;
+	mtimer->PSC = mPsc;
+}
+
+void TimerBasic::set_arr_force(uint16_t arr) {
+    // Start the timer
+	mtimer->CR1 &= ~(0x1UL << TIM_CR1_ARPE_Pos); // Not buffered
+	mArr = arr;
+	mtimer->PSC = mPsc;
+}
+
+void TimerBasic::start() {
+    // Start the timer
+    mtimer->CR1 |= TIM_CR1_CEN;
+}
+
+void TimerBasic::stop() {
     // Stop the timer
-    m_timer->CR1 &= ~TIM_CR1_CEN;
+    mtimer->CR1 &= ~TIM_CR1_CEN;
 }
